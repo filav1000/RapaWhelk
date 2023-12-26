@@ -24,12 +24,12 @@ sns.scatterplot(data = df, x = "BW", y = "W", hue = "Sex", s =3)
 #plt.yscale("log")
 plt.show()
 
-unique, counts = np.unique(df["Sex"].values, return_counts=True)
-plt.bar(unique, counts)
-plt.title("No of samples by sex")
-plt.xlabel("Sex")
-plt.ylabel("Counts")
-plt.show()
+#unique, counts = np.unique(df["Sex"].values, return_counts=True)
+#plt.bar(unique, counts)
+#plt.title("No of samples by sex")
+#plt.xlabel("Sex")
+#plt.ylabel("Counts")
+#plt.show()
 
 sns.countplot(data = df, x = "Sex", hue = "Sex")
 plt.show()
@@ -51,3 +51,12 @@ X_resampled, y_resampled = ros.fit_resample(X, y)  # фитвам данните
 # проверка за oversampling
 print("Женските са {}, мъжките {}".format(np.unique(y_resampled, return_counts=True)[1][0], np.unique(y_resampled, return_counts=True)[1][1]))
 print(np.unique(y, return_counts=True))
+
+unique, counts = np.unique(y_resampled, return_counts = True)
+df_resampled = pd.DataFrame({'Sex': unique, 'Counts': counts})
+
+sns.barplot(data = df_resampled, x = 'Sex', y = 'Counts', hue = 'Sex')
+plt.xticks([0,1], labels = ["F", "M"])
+plt.legend(["F", "M"])
+plt.show()
+
